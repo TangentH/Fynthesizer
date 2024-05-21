@@ -13,5 +13,4 @@ sine_wave_formatted = [f"x\"{(value & 0xFFFF):04X}\"" for value in sine_wave]
 with open("sine_wave_lut.txt", "w") as file:
     for i in range(0, len(sine_wave_formatted), 1):
         file.write(", ".join(sine_wave_formatted[i:i+8]) + '\n')
-# test2
 # test hhh
