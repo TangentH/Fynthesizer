@@ -24,6 +24,7 @@ architecture test of skrach_core_tb is
     signal audioOut : signed(DATA_WIDTH-1 downto 0);
     signal phaseInc : unsigned(15 downto 0) := to_unsigned(PHASE_CALC, 16);
     signal phaseInc2 : unsigned(15 downto 0) := to_unsigned(PHASE_CALC_2, 16);
+    signal opWaveSel: std_logic_vector(23 downto 0):= (others => '0');
     
 begin
 
@@ -40,7 +41,8 @@ begin
             rel => rel,
             ampl => ampl,
             nextSample => nextSample,
-            audioOut => audioOut
+            audioOut => audioOut,
+            opWaveSel => opWaveSel
         );
 
     -- Clock generation

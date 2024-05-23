@@ -58,7 +58,8 @@ component skrach_core is
         -- DAC Next Sample
         nextSample: in std_logic;
         -- 16 bit audio data
-        audioOut: out signed(15 downto 0)
+        audioOut: out signed(15 downto 0);
+        opWaveSel: in std_logic_vector(23 downto 0)
     );
 end component;
 
