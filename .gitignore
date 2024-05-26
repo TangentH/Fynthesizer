@@ -13,4 +13,5 @@
 *.dtmp
 *.gen/
 .vscode
+*.str
 
