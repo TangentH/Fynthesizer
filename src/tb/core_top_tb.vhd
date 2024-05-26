@@ -10,19 +10,18 @@ architecture test of core_top_tb is
     -- Constants
     constant CLK_PERIOD : time := 10 ns;
     constant DATA_WIDTH : integer := 16;
-    constant PHASE_CALC: integer := ((392 * 2**19) / 48000);  -- Common phase increment for testing
+    constant PHASE_CALC: integer := ((392 * 2**19) / 48000);
 
     -- Signals
     signal clk : std_logic := '0';
     signal reset : std_logic := '1';
+    signal BTNU : std_logic := '0';
+    signal BTND : std_logic := '0';
+    signal BTNL : std_logic := '0';
+    signal BTNR : std_logic := '0';
     signal commonPhaseInc : unsigned(15 downto 0) := to_unsigned(PHASE_CALC, 16);
-    signal opEnable : std_logic_vector(11 downto 0) := (others => '0');
-    signal att, dec, sus, rel : signed(7 downto 0) := (others => '0');
-    signal ampl : signed(7 downto 0) := (others => '0');
-    signal nextSample : std_logic := '0';
-    signal audioOut : signed(DATA_WIDTH-1 downto 0);
-    signal opWaveSel: std_logic_vector(23 downto 0):= (others => '0');
-    
+    signal audio_out : signed(DATA_WIDTH-1 downto 0);
+
 begin
 
     -- Instantiate the Unit Under Test (UUT)
@@ -30,20 +29,16 @@ begin
         port map (
             clk => clk,
             reset => reset,
+            BTNU => BTNU,
+            BTND => BTND,
+            BTNL => BTNL,
+            BTNR => BTNR,
             commonPhaseInc => commonPhaseInc,
-            opEnable => opEnable,
-            att => att,
-            dec => dec,
-            sus => sus,
-            rel => rel,
-            ampl => ampl,
-            nextSample => nextSample,
-            audioOut => audioOut,
-            opWaveSel => opWaveSel
+            audio_out => audio_out
         );
 
     -- Clock generation
-    clk_process : process
+    clk_process :process
     begin
         while true loop
             clk <= '0';
@@ -57,10 +52,7 @@ begin
     nextSample_process : process
     begin
         while true loop
-            nextSample <= '0';
-            wait for 100 ns;
-            nextSample <= '1';
-            wait for 100 ns;
+            wait for 3 * CLK_PERIOD;
         end loop;
     end process;
 
@@ -73,24 +65,27 @@ begin
         reset <= '0';
         wait for 20 ns;
 
-        -- Set initial test conditions
-        opEnable <= "000000000111";
-        att <= to_signed(1, 8);
-        dec <= to_signed(1, 8);
-        sus <= to_signed(50, 8);
-        rel <= to_signed(1, 8);
-        ampl <= to_signed(127, 8);
+        -- Simulate button presses
+        BTNU <= '1';
+        wait for 10000 ns;
+        BTNU <= '0';
+        
+        BTND <= '1';
+        wait for 10000 ns;
+        BTND <= '0';
 
-        -- Simulate key press duration
-        wait for 8 us;
-        opEnable <= "000000000000"; -- Note off, triggering release phase
-        
-        wait for 2 us;
-        
-        -- Disable the operator and finish the simulation
-        opEnable <= (others => '0');
+        BTNL <= '1';
         wait for 100 ns;
+        BTNL <= '0';
 
+        BTNR <= '1';
+        wait for 10000 ns;
+        BTNR <= '0';
+
+        -- Run for a while to observe waveform
+        wait for 1 ms;
+
+        -- End simulation
         wait;
     end process;
 
