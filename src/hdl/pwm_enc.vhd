@@ -38,7 +38,8 @@ begin
             amplitude_unsigned <= resize(unsigned(amplitude_shifted),16);
 
             -- Calculate duty cycle based on shifted and converted amplitude
-            duty_cycle <= resize((resize(amplitude_unsigned, 16) * pwm_period) srl 16, 16); -- Equivalent to division by 65535
+            duty_cycle <= resize((resize(amplitude_unsigned, 16) * pwm_period) srl 16, 16); 
+            -- Equivalent to division by 2**16, as long as the least significant bit is not 1, the division is correct
 
             -- PWM generation logic
             if pwm_counter < duty_cycle then
