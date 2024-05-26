@@ -20,11 +20,11 @@ entity adsr is
         -- DAC ready for next sample
         nextSample: in std_logic;
         -- ADRS, all timings in 8bit
-        attack: in signed(7 downto 0);
-        decay: in signed(7 downto 0);
-        sustain: in signed(7 downto 0);
+        attack: in signed(7 downto 0);  -- time to reach max amplitude
+        decay: in signed(7 downto 0);   -- time to reach sustain amplitude
+        sustain: in signed(7 downto 0); -- sustain amplitude
         -- release is a keyword or something
-        rel: in signed(7 downto 0);
+        rel: in signed(7 downto 0);    -- time to reach 0 amplitude
         -- Input amplitude
         signalIn: in signed(DATA_WIDTH-1 downto 0);
         -- Resultant amplitude
@@ -66,8 +66,10 @@ begin
     ----------------------------------------------------------------------------
     -- Divides sampling rate so that we have a reasonable
     -- ammount of time for the envelope.
+    -- 分频器，将nextSample分频，每6个nextSample产生一个nextIncSig的脉冲
+    -- 分频后，相当于把adsr四个状态的时间都延长了，这样让包络的效果更加明显（否则就变化太快了，比如attack瞬间就完成了）
     ----------------------------------------------------------------------------
-         clk_divider : process(clk, nextSample, reset)
+    clk_divider : process(clk, nextSample, reset)
          variable count: integer := 0;
          constant maxCount: integer := 6; -- 16ms increments
          variable prevState: std_logic := '0';
@@ -94,6 +96,8 @@ begin
     -- State machine that changes the amplitude
     -- Counts up to the respective inputs counts, increments amplitude,
     -- resets, then continues until desired amplitude is met.
+    -- 如果不适用adsr的话(en=0，对应的就是noteoff信号），任何状态都会被重置为RELEASE_S
+    -- 这里amplitude定义的最大值就是to_signed(126,8),A定义的是每多少个nextIncSig增加一个amplitude，当到了最大值的时候，就会进入DECAY_S状态
     ----------------------------------------------------------------------------
   adsr_state_machine : process(clk, nextIncSig, reset)
         variable state: ADSR_STATE := RELEASE_S;

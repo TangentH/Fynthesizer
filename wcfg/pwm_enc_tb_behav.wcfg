@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="pwm_enc_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="pwm_enc_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1064001fs"></ZoomEndTime>
+      <Cursor1Time time="77068fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="273"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject type="logic" fp_name="/pwm_enc_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pwm_enc_tb/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/audio_amplitude_tb">
+      <obj_property name="ElementShortName">audio_amplitude_tb[15:0]</obj_property>
+      <obj_property name="ObjectShortName">audio_amplitude_tb[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/pwm_enc_tb/pwm_out_tb">
+      <obj_property name="ElementShortName">pwm_out_tb</obj_property>
+      <obj_property name="ObjectShortName">pwm_out_tb</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pwm_enc_tb/count">
+      <obj_property name="ElementShortName">count</obj_property>
+      <obj_property name="ObjectShortName">count</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pwm_enc_tb/clk_hz">
+      <obj_property name="ElementShortName">clk_hz</obj_property>
+      <obj_property name="ObjectShortName">clk_hz</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/pwm_enc_tb/clk_period">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/amplitude_shifted">
+      <obj_property name="ElementShortName">amplitude_shifted[16:0]</obj_property>
+      <obj_property name="ObjectShortName">amplitude_shifted[16:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/amplitude_unsigned">
+      <obj_property name="ElementShortName">amplitude_unsigned[15:0]</obj_property>
+      <obj_property name="ObjectShortName">amplitude_unsigned[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/duty_cycle">
+      <obj_property name="ElementShortName">duty_cycle[15:0]</obj_property>
+      <obj_property name="ObjectShortName">duty_cycle[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/pwm_counter">
+      <obj_property name="ElementShortName">pwm_counter[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_counter[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/pwm_period">
+      <obj_property name="ElementShortName">pwm_period[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_period[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/pwm_enc_tb/DUT/OFFSET">
+      <obj_property name="ElementShortName">OFFSET[16:0]</obj_property>
+      <obj_property name="ObjectShortName">OFFSET[16:0]</obj_property>
+   </wvobject>
+</wave_config>
