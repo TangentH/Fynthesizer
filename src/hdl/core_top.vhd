@@ -42,10 +42,10 @@ begin
     opWaveSel <= "000000000000000011100100";
 
     -- ADSR values
-    att <= to_signed(1, 8);
-    dec <= to_signed(1, 8);
-    sus <= to_signed(50, 8);
-    rel <= to_signed(1, 8);
+    att <= to_signed(64, 8);
+    dec <= to_signed(64, 8);
+    sus <= to_signed(64, 8);
+    rel <= to_signed(64, 8);
 
     -- Maximum amplitude
     ampl <= to_signed(127, 8);
@@ -66,7 +66,7 @@ begin
     process (clk)
     begin
         if rising_edge(clk) then
-            if counter = 2 then
+            if counter = 10000 then
                 nextSample <= '1';
                 counter <= 0;
             else
