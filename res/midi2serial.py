@@ -4,7 +4,7 @@ import time
 
 # 配置串口
 serial_port = '/dev/ttyUSB1'  # 替换为实际的串口设备
-baud_rate = 4800  # 波特率
+baud_rate = 115200  # 波特率
 ser = serial.Serial(serial_port, baudrate=baud_rate, timeout=1)
 
 # 读取MIDI信号
