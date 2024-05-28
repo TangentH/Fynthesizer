@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="core_top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="core_top_tb" />
+            <top_module name="skrach_parts" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1527600fs"></ZoomStartTime>
+      <ZoomEndTime time="23207601fs"></ZoomEndTime>
+      <Cursor1Time time="11527600fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="253"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wave_markers>
+      <marker label="" time="30405000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/core_top_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/reset">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/BTNU">
+      <obj_property name="ElementShortName">BTNU</obj_property>
+      <obj_property name="ObjectShortName">BTNU</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/BTND">
+      <obj_property name="ElementShortName">BTND</obj_property>
+      <obj_property name="ObjectShortName">BTND</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/BTNL">
+      <obj_property name="ElementShortName">BTNL</obj_property>
+      <obj_property name="ObjectShortName">BTNL</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/BTNR">
+      <obj_property name="ElementShortName">BTNR</obj_property>
+      <obj_property name="ObjectShortName">BTNR</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/commonPhaseInc">
+      <obj_property name="ElementShortName">commonPhaseInc[15:0]</obj_property>
+      <obj_property name="ObjectShortName">commonPhaseInc[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/audio_out">
+      <obj_property name="ElementShortName">audio_out[15:0]</obj_property>
+      <obj_property name="ObjectShortName">audio_out[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/core_top_tb/CLK_PERIOD">
+      <obj_property name="ElementShortName">CLK_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/core_top_tb/DATA_WIDTH">
+      <obj_property name="ElementShortName">DATA_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/core_top_tb/PHASE_CALC">
+      <obj_property name="ElementShortName">PHASE_CALC</obj_property>
+      <obj_property name="ObjectShortName">PHASE_CALC</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/uut/core_inst/nextSample">
+      <obj_property name="ElementShortName">nextSample</obj_property>
+      <obj_property name="ObjectShortName">nextSample</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/core_top_tb/uut/counter">
+      <obj_property name="ElementShortName">counter</obj_property>
+      <obj_property name="ObjectShortName">counter</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/core_top_tb/uut/pwm_out">
+      <obj_property name="ElementShortName">pwm_out</obj_property>
+      <obj_property name="ObjectShortName">pwm_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/uut/pwm_enc_inst/pwm_period">
+      <obj_property name="ElementShortName">pwm_period[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_period[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/uut/pwm_enc_inst/duty_cycle">
+      <obj_property name="ElementShortName">duty_cycle[15:0]</obj_property>
+      <obj_property name="ObjectShortName">duty_cycle[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/uut/pwm_enc_inst/pwm_counter">
+      <obj_property name="ElementShortName">pwm_counter[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_counter[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/core_top_tb/uut/pwm_enc_inst/pwm_period">
+      <obj_property name="ElementShortName">pwm_period[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pwm_period[15:0]</obj_property>
+   </wvobject>
+</wave_config>

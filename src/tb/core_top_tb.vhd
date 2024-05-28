@@ -11,6 +11,7 @@ architecture test of core_top_tb is
     constant CLK_PERIOD : time := 10 ns;
     constant DATA_WIDTH : integer := 16;
     constant PHASE_CALC: integer := ((392 * 2**19) / 48000);
+    -- constant PHASE_CALC: integer := 30;
 
     -- Signals
     signal clk : std_logic := '0';

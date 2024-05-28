@@ -71,7 +71,7 @@ begin
     ----------------------------------------------------------------------------
     clk_divider : process(clk, nextSample, reset)
          variable count: integer := 0;
-         constant maxCount: integer := 6; -- 16ms increments
+         constant maxCount: integer := 64;
          variable prevState: std_logic := '0';
      begin
          if(rising_edge(clk)) then

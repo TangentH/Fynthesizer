@@ -9,7 +9,9 @@ entity core_top is
         reset: in std_logic;
         BTNU, BTND, BTNL, BTNR: in std_logic; -- Buttons for enabling operators
         commonPhaseInc: in unsigned(15 downto 0); -- Common phase increment for all operators
-        audio_out: out signed(15 downto 0) -- Output audio signal
+        audio_out: out signed(15 downto 0); -- Output audio signal
+        pwm_out : out std_logic; -- Output PWM signal
+        pwm_sd : out std_logic -- amplify
     );
 end core_top;
 
@@ -22,6 +24,20 @@ architecture behavior of core_top is
     signal ampl: signed(7 downto 0);
     signal opWaveSel: std_logic_vector(23 downto 0);
     signal counter: integer := 0;
+    signal audio : signed(15 downto 0);
+
+    component pwm_enc is
+        generic(
+            pwm_period : UNSIGNED(15 downto 0) := x"FFFF"
+        );
+        port(
+            clk: in std_logic;
+            rst : in std_logic;
+            audio_amplitude : in signed(15 downto 0);
+            pwm_out : out std_logic
+        );
+    end component;
+
 begin
 
     -- Manually assign commonPhaseInc to each 16-bit segment of fullPhaseInc for the first 4 operators
@@ -45,7 +61,7 @@ begin
     att <= to_signed(64, 8);
     dec <= to_signed(64, 8);
     sus <= to_signed(64, 8);
-    rel <= to_signed(64, 8);
+    rel <= to_signed(127, 8);
 
     -- Maximum amplitude
     ampl <= to_signed(127, 8);
@@ -66,7 +82,7 @@ begin
     process (clk)
     begin
         if rising_edge(clk) then
-            if counter = 10000 then
+            if counter = 2**10-1 then
                 nextSample <= '1';
                 counter <= 0;
             else
@@ -89,9 +105,23 @@ begin
             rel => rel,
             ampl => ampl,
             nextSample => nextSample,
-            audioOut => audio_out,
+            audioOut => audio,
             opWaveSel => opWaveSel
         );
+
+    pwm_enc_inst: pwm_enc
+        generic map(
+            pwm_period => to_unsigned(1024,16)
+        )
+        port map(
+            clk => clk,
+            rst => reset,
+            audio_amplitude => audio,
+            pwm_out => pwm_out
+        );
+
+    audio_out <= audio;
+    pwm_sd <= '1';
 
 end behavior;
 

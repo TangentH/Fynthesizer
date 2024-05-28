@@ -6,7 +6,7 @@ use IEEE.NUMERIC_STD.ALL;
 use work.skrach_parts.all;
 
 entity skrach_core is
-  port (
+port (
         -- 100 Mhz System Clock
         clk: in std_logic;
         -- Active low reset
@@ -24,7 +24,7 @@ entity skrach_core is
         -- 16 bit audio data
         audioOut: out signed(15 downto 0);
         opWaveSel: in std_logic_vector(23 downto 0)
-  );
+);
 end skrach_core;
 
 architecture implementation of skrach_core is
@@ -213,7 +213,7 @@ begin
  );
     mix_inst: mixer
     generic map (
-        ACTIVE_CHANNELS => 12,
+        ACTIVE_CHANNELS => 1,
         DATA_WIDTH => 16
     )
     port map (
