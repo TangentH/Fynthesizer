@@ -26,3 +26,9 @@ A延时=A延时的系数\times maxCount(64)\times 126(最大值)\times next\_sam
 \_counter \times10^{-8}(s)
 $$
 ADR虽然是这个数字是用来计时的，但是表示的是速度的概念，值越大，下降一个幅度单位的时间越长，速度越慢
+
+
+
+## Ref
+
+https://github.com/Ianmurph91/uart_transceiver?tab=readme-ov-file
