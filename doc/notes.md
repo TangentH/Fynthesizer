@@ -14,6 +14,10 @@ freq=\frac{phaseInc}{2^{18}\times next\_sample\_period}=\frac{phaseInc}{2^{18}\t
 $$
 所以现在在固定next_sample_counter=$2^{10}$时，可以唯一确定phaseInc和freq的对应关系，至于next_sample_counter长度的选取，是计算20Hz和20kHz时phaseInc的范围是否落在16bit的表示范围内得到的。
 
+
+
+标准音（440Hz）：phaseInc=1177.65 (0100 1001 1010)
+
 ## 关于ADSR延时的计算
 
 ADSR延时计算
