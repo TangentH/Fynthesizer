@@ -4,6 +4,8 @@
 
 假设PWM的周期是$2^N$个系统时钟周期，则PWM的分辨率是Nbit，采样率是$1/(2^N\times clk\_period)$
 
+后面感觉N=12也就是4096个时钟周期的PWM周期比较平衡，N=10的时候能够听到一些杂音，应该是分辨率不够导致的
+
 ## 关于freq和phaseInc以及next_sample周期的关系
 
 next_sample的周期是counter（用于降采样）长度*系统时钟周期
@@ -32,3 +34,5 @@ ADR虽然是这个数字是用来计时的，但是表示的是速度的概念�
 ## Ref
 
 https://github.com/Ianmurph91/uart_transceiver?tab=readme-ov-file
+
+https://github.com/jakubcabal/uart-for-fpga
