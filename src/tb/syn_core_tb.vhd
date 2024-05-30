@@ -2,10 +2,10 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity skrach_core_tb is
-end skrach_core_tb;
+entity syn_core_tb is
+end syn_core_tb;
 
-architecture test of skrach_core_tb is
+architecture test of syn_core_tb is
 
     -- Constants
     constant CLK_PERIOD : time := 10 ns;
@@ -29,7 +29,7 @@ architecture test of skrach_core_tb is
 begin
 
     -- Instantiate the Unit Under Test (UUT)
-    uut: entity work.skrach_core
+    uut: entity work.syn_core
         port map (
             clk => clk,
             reset => reset,
