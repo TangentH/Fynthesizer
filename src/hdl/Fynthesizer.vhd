@@ -9,7 +9,9 @@ entity Fynthesizer is
         uart_rxd_in : in std_logic;
         anode : out std_logic_vector(7 downto 0);
         cathode : out std_logic_vector(6 downto 0);
-        led_out : out signed(15 downto 0);
+        -- led_out : out signed(15 downto 0);
+        -- en : out std_logic_vector(11 downto 0);
+        phaseInc : out unsigned(15 downto 0);  -- New output port for phaseInc
         pwm_out : out std_logic;
         pwm_sd : out std_logic
     );
@@ -169,22 +171,22 @@ begin
     end process;
 
     -- Signal assignment
-    led_out <= audio;
+    -- led_out <= audio;
     pwm_sd <= '1'; -- amplify the output audio
 
     process(clk, midi_received)
     begin
         if rising_edge(clk) then
             if midi_received = '1' then
-                if midi_data(23 downto 16) = x"80" then
+                if midi_data(23 downto 16) = x"90" then
                     -- Note On
                     note_on <= '1';
                     note_off <= '0';
                     note_value <= midi_data(15 downto 8);
-                elsif midi_data(23 downto 16) = x"90" then
+                elsif midi_data(23 downto 16) = x"80" then
                     note_on <= '0';
                     note_off <= '1';
-                    note_value <= (others => '0');
+                    note_value <= midi_data(15 downto 8);
                 end if;
             else
                 note_on <= '0';
@@ -192,5 +194,9 @@ begin
             end if;
         end if;
     end process;
+
+
+    -- Debugging
+    phaseInc <= phaseInc_reg(191 downto 176);
 
 end architecture;

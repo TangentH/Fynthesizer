@@ -28,21 +28,87 @@ begin
             phaseInc <= (others => '0');  -- Reset phaseInc_array
         elsif rising_edge(clk) then
             if note_on = '1' then
-                for i in 11 downto 0 loop
-                    if en_reg(i) = '0' then
-                        en_reg(i) <= '1';
-                        note_reg((i+1)*8-1 downto i*8) <= note_value;
-                        exit;
-                    end if;
-                end loop;
+                if en_reg(11) = '0' then
+                    en_reg(11) <= '1';
+                    note_reg(95 downto 88) <= note_value;
+                elsif en_reg(10) = '0' then
+                    en_reg(10) <= '1';
+                    note_reg(87 downto 80) <= note_value;
+                elsif en_reg(9) = '0' then
+                    en_reg(9) <= '1';
+                    note_reg(79 downto 72) <= note_value;
+                elsif en_reg(8) = '0' then
+                    en_reg(8) <= '1';
+                    note_reg(71 downto 64) <= note_value;
+                elsif en_reg(7) = '0' then
+                    en_reg(7) <= '1';
+                    note_reg(63 downto 56) <= note_value;
+                elsif en_reg(6) = '0' then
+                    en_reg(6) <= '1';
+                    note_reg(55 downto 48) <= note_value;
+                elsif en_reg(5) = '0' then
+                    en_reg(5) <= '1';
+                    note_reg(47 downto 40) <= note_value;
+                elsif en_reg(4) = '0' then
+                    en_reg(4) <= '1';
+                    note_reg(39 downto 32) <= note_value;
+                elsif en_reg(3) = '0' then
+                    en_reg(3) <= '1';
+                    note_reg(31 downto 24) <= note_value;
+                elsif en_reg(2) = '0' then
+                    en_reg(2) <= '1';
+                    note_reg(23 downto 16) <= note_value;
+                elsif en_reg(1) = '0' then
+                    en_reg(1) <= '1';
+                    note_reg(15 downto 8) <= note_value;
+                elsif en_reg(0) = '0' then
+                    en_reg(0) <= '1';
+                    note_reg(7 downto 0) <= note_value;
+                end if;
             elsif note_off = '1' then
-                for i in 11 downto 0 loop
-                    if note_reg((i+1)*8-1 downto i*8) = note_value then
-                        en_reg(i) <= '0';
-                        note_reg((i+1)*8-1 downto i*8) <= (others => '0');
-                    end if;
-                end loop;
+                if note_reg(95 downto 88) = note_value then
+                    en_reg(11) <= '0';
+                    -- note_reg(95 downto 88) <= (others => '0');
+                elsif note_reg(87 downto 80) = note_value then
+                    en_reg(10) <= '0';
+                    -- note_reg(87 downto 80) <= (others => '0');
+                elsif note_reg(79 downto 72) = note_value then
+                    en_reg(9) <= '0';
+                    -- note_reg(79 downto 72) <= (others => '0');
+                elsif note_reg(71 downto 64) = note_value then
+                    en_reg(8) <= '0';
+                    -- note_reg(71 downto 64) <= (others => '0');
+                elsif note_reg(63 downto 56) = note_value then
+                    en_reg(7) <= '0';
+                    -- note_reg(63 downto 56) <= (others => '0');
+                elsif note_reg(55 downto 48) = note_value then
+                    en_reg(6) <= '0';
+                    -- note_reg(55 downto 48) <= (others => '0');
+                elsif note_reg(47 downto 40) = note_value then
+                    en_reg(5) <= '0';
+                    -- note_reg(47 downto 40) <= (others => '0');
+                elsif note_reg(39 downto 32) = note_value then
+                    en_reg(4) <= '0';
+                    -- note_reg(39 downto 32) <= (others => '0');
+                elsif note_reg(31 downto 24) = note_value then
+                    en_reg(3) <= '0';
+                    -- note_reg(31 downto 24) <= (others => '0');
+                elsif note_reg(23 downto 16) = note_value then
+                    en_reg(2) <= '0';
+                    -- note_reg(23 downto 16) <= (others => '0');
+                elsif note_reg(15 downto 8) = note_value then
+                    en_reg(1) <= '0';
+                    -- note_reg(15 downto 8) <= (others => '0');
+                elsif note_reg(7 downto 0) = note_value then
+                    en_reg(0) <= '0';
+                    -- note_reg(7 downto 0) <= (others => '0');
+                end if;
             end if;
+            -- Concatenate phaseInc_array to form the phaseInc signal
+            -- Need to concatenate it in the process to avoid multiple drivers (another driver is in reset = '1' branch)
+            phaseInc <= phaseInc_array(11) & phaseInc_array(10) & phaseInc_array(9) & phaseInc_array(8) & 
+            phaseInc_array(7) & phaseInc_array(6) & phaseInc_array(5) & phaseInc_array(4) & 
+            phaseInc_array(3) & phaseInc_array(2) & phaseInc_array(1) & phaseInc_array(0);
         end if;
     end process;
 
@@ -55,9 +121,7 @@ begin
             );
     end generate;
 
+
     en <= en_reg;
-    -- Concatenate phaseInc_array to form the phaseInc signal
-    phaseInc <= phaseInc_array(11) & phaseInc_array(10) & phaseInc_array(9) & phaseInc_array(8) & 
-                phaseInc_array(7) & phaseInc_array(6) & phaseInc_array(5) & phaseInc_array(4) & 
-                phaseInc_array(3) & phaseInc_array(2) & phaseInc_array(1) & phaseInc_array(0);
+    
 end Behavioral;
