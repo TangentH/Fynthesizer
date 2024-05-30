@@ -6,7 +6,7 @@
       <db_ref path="oscillator_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="oscillator_tb" />
-            <top_module name="skrach_parts" />
+            <top_module name="syn_parts" />
          </top_modules>
       </db_ref>
    </db_ref_list>
