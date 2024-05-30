@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use work.skrach_parts.all;
+use work.syn_parts.all;
 
 entity core_top is
     port (
@@ -78,7 +78,7 @@ begin
         end loop;
     end process;
 
-    -- Generate nextSample signal (every 3 clock cycles)
+    -- Generate nextSample signal
     process (clk)
     begin
         if rising_edge(clk) then
@@ -92,8 +92,8 @@ begin
         end if;
     end process;
 
-    -- Instantiate skrach_core with the newly generated fullPhaseInc and control signals
-    core_inst: entity work.skrach_core
+    -- Instantiate syn_core with the newly generated fullPhaseInc and control signals
+    core_inst: entity work.syn_core
         port map (
             clk => clk,
             reset => reset,
@@ -111,7 +111,7 @@ begin
 
     pwm_enc_inst: pwm_enc
         generic map(
-            pwm_period => to_unsigned(1024,16)
+            pwm_period => to_unsigned(4096,16)
         )
         port map(
             clk => clk,

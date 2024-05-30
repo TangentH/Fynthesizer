@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-use work.skrach_parts.all;
+use work.syn_parts.all;
 
 entity operator is
     Port (

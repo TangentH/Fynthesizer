@@ -3,9 +3,9 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-use work.skrach_parts.all;
+use work.syn_parts.all;
 
-entity skrach_core is
+entity syn_core is
 port (
         -- 100 Mhz System Clock
         clk: in std_logic;
@@ -25,9 +25,9 @@ port (
         audioOut: out signed(15 downto 0);
         opWaveSel: in std_logic_vector(23 downto 0)
 );
-end skrach_core;
+end syn_core;
 
-architecture implementation of skrach_core is
+architecture implementation of syn_core is
     type signed_vector is array (0 to 11) of signed(15 downto 0);
     signal opSigOutVec: signed_vector;
 begin

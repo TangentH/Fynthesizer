@@ -1,9 +1,9 @@
 --------------------------------------------------------------------------------
 -- Name:	Daniel Shchur
 -- Updated:	2020/04/26
--- File:    skrach_parts.vhd
--- Module:	Skrach Core
--- Pupr:	Package that contains all the parts necesary for Skrach Core
+-- File:    syn_parts.vhd
+-- Module:	syn Core
+-- Pupr:	Package that contains all the parts necesary for syn Core
 -- 	
 -- Academic Integrity Statement: I certify that, while others may have 
 -- assisted me in brain storming, debugging and validating this program, 
@@ -17,7 +17,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.all;
 use IEEE.NUMERIC_STD.ALL;
 
-package skrach_parts is
+package syn_parts is
 
 component audio_codec_wrapper is
     Generic (
@@ -41,7 +41,7 @@ component audio_codec_wrapper is
     );
 end component;
 
-component skrach_core is
+component syn_core is
     port (
         -- 100 Mhz System Clock
         clk: in std_logic;
@@ -146,4 +146,4 @@ component operator is
 end component;
 
 
-end skrach_parts;
+end syn_parts;

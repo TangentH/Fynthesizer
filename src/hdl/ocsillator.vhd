@@ -8,7 +8,7 @@ use IEEE.NUMERIC_STD.ALL;
 --Library UNIMACRO;
 --use UNIMACRO.vcomponents.all;
 
-use work.skrach_parts.all;
+use work.syn_parts.all;
 
 
 entity oscillator is
