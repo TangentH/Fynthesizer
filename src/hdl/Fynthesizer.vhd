@@ -10,7 +10,6 @@ entity Fynthesizer is
         anode : out std_logic_vector(7 downto 0);
         cathode : out std_logic_vector(6 downto 0);
         -- led_out : out signed(15 downto 0);
-        -- en : out std_logic_vector(11 downto 0);
         phaseInc : out unsigned(15 downto 0);  -- New output port for phaseInc
         pwm_out : out std_logic;
         pwm_sd : out std_logic
@@ -97,6 +96,7 @@ architecture rtl of Fynthesizer is
     signal counter: integer range 0 to 2**10-1 := 0;
     signal audio : signed(15 downto 0);
     signal midi_received : std_logic;
+    signal att, dec, sus, rel, master_volume : signed(7 downto 0) := (to_signed(64,8));
 
 
 begin
@@ -135,11 +135,11 @@ begin
             reset => rst,
             opPhase => phaseInc_reg,
             opEnable => en_reg,
-            att => to_signed(64, 8),
-            dec => to_signed(64, 8),
-            sus => to_signed(64, 8),
-            rel => to_signed(127, 8),
-            ampl => to_signed(127, 8),
+            att => att,
+            dec => dec,
+            sus => sus,
+            rel => rel,
+            ampl => master_volume,
             nextSample => nextSample,
             audioOut => audio,
             opWaveSel => "000000000000000011100100"
@@ -184,9 +184,28 @@ begin
                     note_off <= '0';
                     note_value <= midi_data(15 downto 8);
                 elsif midi_data(23 downto 16) = x"80" then
+                    -- Note Off
                     note_on <= '0';
                     note_off <= '1';
                     note_value <= midi_data(15 downto 8);
+                elsif midi_data(23 downto 16) = x"B0" then
+                    -- Control Change
+                    note_on <= '0';
+                    note_off <= '0';
+                    case midi_data(15 downto 8) is
+                        when x"01" =>
+                            master_volume <= signed(midi_data(7 downto 0));
+                        when x"0E" =>
+                            att <= signed(midi_data(7 downto 0));
+                        when x"0F" =>
+                            dec <= signed(midi_data(7 downto 0));
+                        when x"10" =>
+                            sus <= signed(midi_data(7 downto 0));
+                        when x"11" =>
+                            rel <= signed(midi_data(7 downto 0));
+                        when others =>
+                            null;
+                    end case;
                 end if;
             else
                 note_on <= '0';
@@ -196,7 +215,7 @@ begin
     end process;
 
 
-    -- Debugging
+    -- Visualize Decoded phaseInc
     phaseInc <= phaseInc_reg(191 downto 176);
 
 end architecture;
