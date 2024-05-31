@@ -45,7 +45,7 @@ begin
     uart_inst : UART
         generic map(
             CLK_FREQ => 1e8,
-            BAUD_RATE => 115200,
+            BAUD_RATE => 460800,
             PARITY_BIT => "none",
             USE_DEBOUNCER => True
         )
