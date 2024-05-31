@@ -213,7 +213,7 @@ begin
  );
     mix_inst: mixer
     generic map (
-        ACTIVE_CHANNELS => 1,
+        ACTIVE_CHANNELS => 12,
         DATA_WIDTH => 16
     )
     port map (

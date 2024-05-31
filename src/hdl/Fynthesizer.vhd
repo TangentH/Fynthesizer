@@ -7,6 +7,7 @@ entity Fynthesizer is
         clk : in std_logic;
         rst : in std_logic;
         uart_rxd_in : in std_logic;
+        wave_select : in std_logic_vector(15 downto 0);        
         anode : out std_logic_vector(7 downto 0);
         cathode : out std_logic_vector(6 downto 0);
         -- led_out : out signed(15 downto 0);
@@ -96,10 +97,13 @@ architecture rtl of Fynthesizer is
     signal counter: integer range 0 to 2**10-1 := 0;
     signal audio : signed(15 downto 0);
     signal midi_received : std_logic;
-    signal att, dec, sus, rel, master_volume : signed(7 downto 0) := (to_signed(64,8));
+    signal att, dec, rel : signed(7 downto 0) := (to_signed(0,8));
+    signal sus, master_volume : signed(7 downto 0) := (to_signed(80,8));
+    signal wave_sel : std_logic_vector(23 downto 0) := (others => '0');
 
 
 begin
+    wave_sel(23 downto 8) <= wave_select;
     midi_decoder_inst : midi_decoder
         port map (
             clk => clk,
@@ -142,7 +146,7 @@ begin
             ampl => master_volume,
             nextSample => nextSample,
             audioOut => audio,
-            opWaveSel => "000000000000000011100100"
+            opWaveSel => wave_sel
         );
 
     pwm_enc_inst: pwm_enc
