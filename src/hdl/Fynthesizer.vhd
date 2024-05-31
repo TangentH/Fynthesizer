@@ -10,8 +10,8 @@ entity Fynthesizer is
         wave_select : in std_logic_vector(15 downto 0);        
         anode : out std_logic_vector(7 downto 0);
         cathode : out std_logic_vector(6 downto 0);
-        -- led_out : out signed(15 downto 0);
-        phaseInc : out unsigned(15 downto 0);  -- New output port for phaseInc
+        volume_visualizer_out : out std_logic_vector(15 downto 0);
+        -- phaseInc : out unsigned(15 downto 0);  -- New output port for phaseInc
         pwm_out : out std_logic;
         pwm_sd : out std_logic
     );
@@ -85,6 +85,16 @@ architecture rtl of Fynthesizer is
         );
     end component;
 
+    component audio_level_meter is
+        generic (
+            DATA_WIDTH : integer := 16
+        );
+        port (
+            audio_in : in signed(DATA_WIDTH-1 downto 0);
+            level_out : out std_logic_vector(DATA_WIDTH-1 downto 0)
+        );
+    end component;
+
 
     -- Internal signals
     signal midi_data : std_logic_vector(23 downto 0);
@@ -147,6 +157,15 @@ begin
             nextSample => nextSample,
             audioOut => audio,
             opWaveSel => wave_sel
+        );
+
+    audio_level_meter_inst : audio_level_meter
+        generic map(
+            DATA_WIDTH => 16
+        )
+        port map(
+            audio_in => audio,
+            level_out => volume_visualizer_out
         );
 
     pwm_enc_inst: pwm_enc
@@ -219,7 +238,7 @@ begin
     end process;
 
 
-    -- Visualize Decoded phaseInc
-    phaseInc <= phaseInc_reg(191 downto 176);
+    -- Visualize Decoded phaseInc (for debugging)
+    -- phaseInc <= phaseInc_reg(191 downto 176);
 
 end architecture;
