@@ -38,10 +38,10 @@ begin
     --        "00000000";
     sel <= "01111111" when q_reg = "111" else
            "10111111" when q_reg = "110" else
-           "11011111" when q_reg = "101" else
+           "11111111" when q_reg = "101" else
            "11101111" when q_reg = "100" else
            "11110111" when q_reg = "011" else
-           "11111011" when q_reg = "010" else
+           "11111111" when q_reg = "010" else
            "11111101" when q_reg = "001" else
            "11111110" when q_reg = "000" else
            "00000000";

@@ -44,6 +44,6 @@ architecture arch of sevenSegDisplay is
 begin
     freq_div: freq_divider port map (clk100mhz => clk, rst => rst, pulse8khz => pulse8khz);
     anode_driv: anode_driver port map (clk => clk, en => pulse8khz, rst => rst, sel => anode, cnt => cnt);
-    multi_hex_dec: multi_hex_decoder port map (sel => cnt, in_hex1 => (others => '0'), in_hex2 => (others => '0'), in_hex3 => midi_msg(23 downto 20), in_hex4 => midi_msg(19 downto 16), in_hex5 => midi_msg(15 downto 12), in_hex6 => midi_msg(11 downto 8), in_hex7 => midi_msg(7 downto 4), in_hex8 => midi_msg(3 downto 0), cathode_out => cathode);
+    multi_hex_dec: multi_hex_decoder port map (sel => cnt, in_hex3 => (others => '0'), in_hex6 => (others => '0'), in_hex1 => midi_msg(23 downto 20), in_hex2 => midi_msg(19 downto 16), in_hex4 => midi_msg(15 downto 12), in_hex5 => midi_msg(11 downto 8), in_hex7 => midi_msg(7 downto 4), in_hex8 => midi_msg(3 downto 0), cathode_out => cathode);
     
 end architecture;
