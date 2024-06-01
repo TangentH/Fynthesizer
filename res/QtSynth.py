@@ -16,6 +16,8 @@ def send_to_serial(data):
 def midi_to_bytes(msg):
     return msg.bytes()
 
+1
+
 class MidiThread(QThread):
     midi_signal = pyqtSignal(str, int)
 
@@ -61,7 +63,7 @@ class SynthWindow(QWidget):
         super().__init__()
         self.setWindowTitle("Qt Synthesizer Panel")
         self.setGeometry(100, 100, 500, 400)
-        self.setWindowFlag(Qt.WindowStaysOnTopHint)
+        # self.setWindowFlag(Qt.WindowStaysOnTopHint)
         self.initUI()
 
         # Start MIDI thread
