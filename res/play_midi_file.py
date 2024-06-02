@@ -41,7 +41,11 @@ def build_midi_message(msg):
     
     status_byte += 0  # 设置通道为 0
 
-    return bytes([status_byte] + data)
+    # 仅返回包含3个字节的消息
+    if len(data) == 2:
+        return bytes([status_byte] + data)
+    else:
+        return None
 
 # 读取 MIDI 文件
 midi_file = mido.MidiFile('outer.mid')
@@ -70,9 +74,10 @@ try:
             # 构建 MIDI 消息字节数组
             midi_bytes = build_midi_message(msg)
             
-            print(f"Original message: {msg} (channel {msg.channel})")
-            print(f"Modified message bytes: {list(midi_bytes)}")
-            send_to_serial(midi_bytes)
+            if midi_bytes:
+                print(f"Original message: {msg} (channel {msg.channel})")
+                print(f"Modified message bytes: {list(midi_bytes)}")
+                send_to_serial(midi_bytes)
 
 except KeyboardInterrupt:
     print("Interrupted by user")
