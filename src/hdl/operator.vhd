@@ -21,7 +21,7 @@ architecture implementation of operator is
     signal oscOut: signed(15 downto 0);
 begin
 
-    osc_inst: oscillator
+    osc_inst: oscillator_inst
     port map (
         -- 100 MHz clk
         clk => clk,
