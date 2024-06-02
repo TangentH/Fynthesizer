@@ -93,6 +93,23 @@ component oscillator is
     );
 end component;
 
+component oscillator_inst is
+    Port (
+        -- 100 MHz clk
+        clk: in std_logic;
+        -- Active low reset, should be handled in sync with other OSCs
+        reset: in std_logic;
+        -- sine, triangle, saw, square
+        waveSel: in std_logic_vector(1 downto 0);
+        -- Q9.7, adjust the increment for sample data
+        phaseInc: in unsigned(15 downto 0);
+        -- read's next sample
+        nextSample: in std_logic;
+        -- Signed PCM data
+        wavformOut: out signed(15 downto 0)
+    );
+end component;
+
 component mixer is
     generic (
         ACTIVE_CHANNELS : integer := 10;
