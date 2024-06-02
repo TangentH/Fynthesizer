@@ -48,7 +48,7 @@ def build_midi_message(msg):
         return None
 
 # 读取 MIDI 文件
-midi_file = mido.MidiFile('outer.mid')
+midi_file = mido.MidiFile('main.mid')
 
 # 获取所有通道
 channels = set()

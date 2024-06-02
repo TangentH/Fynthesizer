@@ -57,7 +57,7 @@ begin
 
     mix_inst: mixer
     generic map (
-        ACTIVE_CHANNELS => 12,
+        ACTIVE_CHANNELS => 4,
         DATA_WIDTH => 16
     )
     port map (

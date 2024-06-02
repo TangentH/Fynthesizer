@@ -49,7 +49,7 @@ begin
             end if;
 
             -- Increment PWM counter
-            if pwm_counter = pwm_period then
+            if pwm_counter = pwm_period-1 then
                 pwm_counter <= (others => '0');
             else
                 pwm_counter <= pwm_counter + 1;
