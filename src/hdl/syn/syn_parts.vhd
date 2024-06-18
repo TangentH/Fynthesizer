@@ -41,6 +41,28 @@ component audio_codec_wrapper is
     );
 end component;
 
+component syn_core_inst is
+    port (
+            -- 100 Mhz System Clock
+            clk: in std_logic;
+            -- Active low reset
+            reset: in std_logic;
+            -- 12 16 bit signals LSB = op1
+            opPhase: in unsigned(191 downto 0);
+            -- one hot encoding note on/off
+            opEnable: in std_logic_vector(11 downto 0);
+            -- ADSR for the operators
+            att, dec, sus, rel: in signed(7 downto 0);
+            -- Master amplitude
+            ampl: in signed(7 downto 0);
+            -- DAC Next Sample
+            nextSample: in std_logic;
+            -- 16 bit audio data
+            audioOut: out signed(15 downto 0);
+            opWaveSel: in std_logic_vector(23 downto 0)
+    );
+end component;
+
 component syn_core is
     port (
         -- 100 Mhz System Clock
@@ -150,6 +172,19 @@ component adsr is
 end component;
 
 component operator is
+    Port (
+        clk: in std_logic;
+        reset: in std_logic;
+        nextSample: in std_logic;
+        waveSel: in std_logic_vector(1 downto 0);
+        phaseInc: in unsigned(15 downto 0);
+        att, dec, sus, rel: in signed(7 downto 0);
+        en: in std_logic;
+        sigOut: out signed(15 downto 0)
+    );
+end component;
+
+component operator_inst is
     Port (
         clk: in std_logic;
         reset: in std_logic;

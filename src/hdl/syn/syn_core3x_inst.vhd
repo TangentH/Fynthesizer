@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use work.syn_parts.all;
 
-entity syn_core3x is
+entity syn_core3x_inst is
 port (
         -- 100 Mhz System Clock
         clk: in std_logic;
@@ -27,15 +27,15 @@ port (
         audioOut: out signed(15 downto 0);
         waveSel: in std_logic_vector(5 downto 0)
 );
-end syn_core3x;
+end syn_core3x_inst;
 
-architecture implementation of syn_core3x is
+architecture implementation of syn_core3x_inst is
     type signed_vector is array (0 to 11) of signed(15 downto 0);
     signal opSigOutVec: signed_vector;
 begin
 
     gen_operators3x: for i in 0 to 11 generate
-        operator_inst: entity work.operator3x
+        operator_inst: entity work.operator3x_inst
         port map (
             clk => clk,
             reset => reset,
@@ -57,7 +57,7 @@ begin
 
     mix_inst: mixer
     generic map (
-        ACTIVE_CHANNELS => 4,
+        ACTIVE_CHANNELS => 2,
         DATA_WIDTH => 16
     )
     port map (

@@ -147,7 +147,7 @@ begin
     end process;
 
     -- Instantiate syn_core with the newly generated fullPhaseInc and control signals
-    core_inst: entity work.syn_core
+    core_inst: entity work.syn_core_inst
         port map (
             clk => clk,
             reset => reset,
