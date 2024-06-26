@@ -6,7 +6,7 @@ A MIDI controller is supported, but you may need to modify the hard-coded MIDI m
 
 We have provided a GUI panel in `res/QtSynth.py`. The panel interface is shown below, displaying the adjustable parameters.
 
-<img src="./assets/panel.jpg" alt="panel" style="zoom:50%;" />
+<img src="./assets/panel.jpg" width="300" />
 
 For more details and specifications, please refer to [Final_Report.pdf](doc/Final_Report.pdf).
 
@@ -89,9 +89,10 @@ Thanks to the following projects for their inspiration and help:
 ## Contributors
 
 <a href="https://github.com/Tangent-H">
-  <img src="https://avatars.githubusercontent.com/u/105114805?v=4?size=10" />
+  <img src="https://avatars.githubusercontent.com/u/105114805?v=4" width="100" />
 </a>
 
-
 <a href="https://github.com/VivianChencwy">
-  <img src="https://avatars.githubusercontent.com/u/128114805?v=4?size=10" />
+  <img src="https://avatars.githubusercontent.com/u/128114805?v=4"  width="100"/>
+</a>
+
