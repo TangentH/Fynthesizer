@@ -6,7 +6,7 @@ A MIDI controller is supported, but you may need to modify the hard-coded MIDI m
 
 We have provided a GUI panel in `res/QtSynth.py`. The panel interface is shown below, displaying the adjustable parameters.
 
-![panel](./assets/panel.jpg)
+<img src="./assets/panel.jpg" alt="panel" style="zoom:50%;" />
 
 For more details and specifications, please refer to [Final_Report.pdf](doc/Final_Report.pdf).
 
@@ -85,3 +85,13 @@ Thanks to the following projects for their inspiration and help:
 
 - [docquantum/skrach-synth: An FPGA synthesizer with MIDI support](https://github.com/docquantum/skrach-synth)
 - [jakubcabal/uart-for-fpga: Simple UART controller for FPGA written in VHDL](https://github.com/jakubcabal/uart-for-fpga)
+
+## Contributors
+
+<a href="https://github.com/Tangent-H">
+  <img src="https://avatars.githubusercontent.com/u/105114805?v=4?size=10" />
+</a>
+
+
+<a href="https://github.com/VivianChencwy">
+  <img src="https://avatars.githubusercontent.com/u/128114805?v=4?size=10" />
